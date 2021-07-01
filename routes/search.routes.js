@@ -1,5 +1,8 @@
 const router = require("express").Router();
 
+const UserModel = require('../models/User.model')
+const DrinkModel = require('../models/Drink.model')
+
 ///Search ROUTES///
 // - random, by ID, 
 
