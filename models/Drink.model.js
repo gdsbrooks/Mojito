@@ -11,8 +11,8 @@ const drinkSchema = new Schema({
         type: String, 
         enum: ["The Unforgettables" , "Contemporary Classics" , "New Era Drinks"], 
         default: "The Unforgettables"
-    }
-    imageUrl:   String
+    },
+    imageUrl:   String,
     feedback:   [ 
         {
             user: {
@@ -27,7 +27,7 @@ const drinkSchema = new Schema({
             } 
         } 
     ],
-    avgRating:  Decimal128         
+    avgRating:  Schema.Types.Decimal128        
 });
 
 const Drink = model("Drink", drinkSchema);

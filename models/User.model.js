@@ -3,15 +3,15 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   email: {
     type: String,
-    req: true,
+    required: true,
     unique: true
   },
   password: String,
 
   nickname: {
     type: String,
-    req: true,
-  }
+    required: true
+  },
   favDrinks: {
     ref: 'Drink',
     type: [Schema.Types.ObjectId]
