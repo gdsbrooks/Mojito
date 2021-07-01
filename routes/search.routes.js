@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-///SEARCH ROUTES///
+///Search ROUTES///
 // - random, by ID, 
 
 router.get("/", (req, res, next) => {
