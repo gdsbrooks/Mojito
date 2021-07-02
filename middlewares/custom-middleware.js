@@ -6,7 +6,7 @@ const hashIt = (password) => {
     return hash
 }
 
-const checkLoggedIn = (req, res, next) => {
+const isLoggedIn = (req, res, next) => {
     if ( req.session.loggedInUser) {
         next()
     }
@@ -15,4 +15,4 @@ const checkLoggedIn = (req, res, next) => {
     }
   }
 
-  module.exports = {hashIt, checkLoggedIn}
+  module.exports = {hashIt, isLoggedIn}

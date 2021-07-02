@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const UserModel = require('../models/User.model')
 const DrinkModel = require('../models/Drink.model')
 
-const {hashIt, checkLoggedIn} = require('../middlewares/custom-middleware')
+const {hashIt, isLoggedIn} = require('../middlewares/custom-middleware')
 
 ///AUTH ROUTES///
 
@@ -26,7 +26,6 @@ router.get('/signup', (req, res, next) => {
 })
 
 //Sign-up POST
-
 router.post('/signup', (req, res, next) => { 
   const {email, nickname, password} = req.body
   UserModel.create({email, nickname, hashedPassword: hashIt(password)})
@@ -76,9 +75,7 @@ router.post("/signin", (req, res, next) => {
         })
 })
 
-router.get('/profile', checkLoggedIn, (req, res, next) => {
-
-  res.render('auth/profile.hbs', {name:  req.session.loggedInUser.username})
-})
-
 module.exports = router;
+
+
+//{"cookie":{"originalMaxAge":86400000,"expires":"2021-07-03T10:12:18.589Z","httpOnly":true,"path":"/"},"loggedInUser":{"favDrinks":[],"_id":"60dee6793beb6c4a0ae203b5","email":"3@4.com","nickname":"Cool Dude","hashedPassword":"$2a$10$YYVt1SWUxmtvdBOFG2nWk.dxFUdl5tGg2JfJcrgvrqqHN1CFiTlm6","__v":0}}
