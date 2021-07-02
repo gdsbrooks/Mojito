@@ -27,7 +27,7 @@ body{
     padding:0%
 }
 
-.navbar-links-li{
+.navbar-links-li a{
     text-decoration: none;
     color: white;
 }
