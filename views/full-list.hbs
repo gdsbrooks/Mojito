@@ -1,0 +1,10 @@
+
+List of cocktails
+
+{{#each cocktails}}
+<form method="POST" action="/add-cocktail/{{this._id}}">
+<label>{{this.name}}</label><input type="text" name="url" value="{{this.imageUrl}}">  <button>Add</button>
+</form>
+
+<br>
+{{/each}}

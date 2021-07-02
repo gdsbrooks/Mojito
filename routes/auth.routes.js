@@ -6,6 +6,9 @@ const DrinkModel = require('../models/Drink.model')
 
 ///AUTH ROUTES///
 
+//Sign-Up GET
+
+//Sign-up AUTH
 router.get("/", (req, res, next) => {
   res.render("index");
 });
