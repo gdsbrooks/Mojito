@@ -1,29 +1,30 @@
+{{!-- <div class="container justify-content-center mt-5"> --}}
+  <div class="card border mx-md-5">
+    <div class="row g-0 border">
+      <div class="col-md-3 border">
+        <img src="{{this.imageUrl}}" class="rounded-start" style="width:100%;" alt="{{this.name}}">
+        {{!-- <div class="card-img-overlay">❤️ <i class="bi-heart-fill"></i></div> --}}
+      </div>
 
-<div style=margin: 10;><div class="card mb-3" style="max-width: 540px;"> 
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{this.imageUrl}}" class="img-fluid rounded-start" alt="{{this.name}}">
-      <div class="card-img-overlay">❤️ <i class="bi-heart-fill"></i></div>
-    </div>
-      
-    <div class="col-md-8">
-      <div class="card-body">
-        <h4 class="card-title">{{this.name}}</h4>
-        <h5 class="card-subtitletitle">Ingredients:</h5>
-<ul>
-                {{#each this.ingredients}}
-                <li>{{amount}}{{unit}} {{name}}</li>
-                {{/each}}
-            </ul>
-        <p class="card-text">Method: <br> {{this.method}}</p>
-            <p class="card-text">Garnish: <br> {{this.garnish}}</p>
-            <p class="card-text">Note: <br> {{this.note}}</p>
-            <small class="text-muted">   
-                <a href="#" class="btn btn-dark">Edit</a>
-            <span class="badge rounded-pill bg-primary">{{this.source}}</span>
-            <br>
-            <span class="badge bg-secondary">{{this.ingredients.0.name}}</span></small></p>
+      <div class="col-md 6 border">
+        <div class="card-body">
+          <h4 class="card-title">{{this.name}}</h4>
+          <h5 class="card-subtitletitle">Ingredients:</h5>
+          <ul>
+            {{#each this.ingredients}}
+            <li>{{amount}}{{unit}} {{name}}</li>
+            {{/each}}
+          </ul>
+          <p class="card-text">Method: <br> {{this.method}}</p>
+          <p class="card-text">Garnish: <br> {{this.garnish}}</p>
+          <p class="card-text">Note: <br> {{this.note}}</p>
+          <div class="card-footer">
+            <a href="#" class="btn btn-dark float-md-end">Edit</a>
+            <span class="badge rounded-pill bg-primary mx-1 float-md-start" >{{this.source}}</span>
+            <span class="badge bg-secondary mx-1 float-md-start">{{this.ingredients.0.name}}</span></small></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div> 
+</div>
