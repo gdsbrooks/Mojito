@@ -3,11 +3,11 @@ const { Schema, model } = require("mongoose");
 const drinkSchema = new Schema({
 
     name: String,
-    ingredients: [ { ing_name: String, amount: Number, unit: String } ],
+    ingredients: [ { name: String, amount: Number, unit: String } ],
     garnish:    String,
     method:     String,
     note:       String,
-    category:   { 
+    source:   { 
         type: String, 
         enum: ["The Unforgettables" , "Contemporary Classics" , "New Era Drinks"], 
         default: "The Unforgettables"
