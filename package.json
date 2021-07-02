@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "express-connect": "^0.0.1",
     "hbs": "^4.1.2",
+    "mdb-ui-kit": "^3.8.1",
     "mongoose": "^5.13.0",
     "morgan": "^1.10.0",
     "serve-favicon": "^2.5.0"

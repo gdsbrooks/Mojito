@@ -1,12 +1,9 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.hm-gradient {
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
 }
-
-a {
-  color: #00b7ff;
+.navbar .dropdown-menu a:hover {
+    color: #616161 !important;
 }
-
-h1 {
-  color: 15px;
+.darken-grey-text {
+    color: #2E2E2E;
 }
