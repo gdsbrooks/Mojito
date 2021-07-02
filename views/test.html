@@ -1,144 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mojito! Come have a cotail with us.</title>
+    <link rel="stylesheet" href="../public/stylesheets/style-test.css" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-</head>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="LOGO_ATL_TEXT" width="30" height="24">
-            </a>
-            <a class="navbar-brand" href="#">MOJITO</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/aboutus">About Us</a>
-                    </li>
-                    <li class="nav-item dropdown bg-transparent">
-                        <a class="nav-link dropdown-toggle bg-transparent" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Let's Make a Drink!
-                        </a>
-                        <ul class="dropdown-menu bg-transparent" aria-labelledby="navbarDropdown">
-
-                            {{#if isLoggedIn }}
-                            <li class="dropdown-item bg-transparent" id="to-right">
-                                <a href="/logout">Logout</a>
-                            </li>
-                            {{else}}
-                            <li class="dropdown-item bg-transparent" id="to-right">
-                                <a href="/signup">Signup</a>
-                            </li>
-                            <li class="dropdown-item bg-transparent" id="to-right">
-                                <a href="/signin">SignIn</a>
-                            </li>
-                            {{/if}}
-
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="/public/images/bon-vivant-ZBvCx9iAyu4-unsplash.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="/public/images/johann-trasch-gePb4Q1NL_U-unsplash.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="/public/images/alex-block-eicoRD590x4-unsplash.jpg" class="d-block w-100" alt="...">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-
-<body>
-
-    {{{body}}}
-
-    <div class="jumbotron">
-        <h1>Learn to Create Websites</h1>
-        <p class="lead">In today's world internet is the most popular way of connecting with the people. At <a
-                href="https://www.tutorialrepublic.com" target="_blank">tutorialrepublic.com</a> you will learn the
-            essential of web development technologies along with real life practice example, so that you can create your
-            own website to connect with the people around the world.</p>
-        <p><a href="https://www.tutorialrepublic.com" target="_blank" class="btn btn-primary btn-lg">Start learning
-                today</a></p>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <img src="/public/images/preview.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Old Fashioned</h5> <i class="bi-heart-fill"></i>
-            <i class="bi-heart"></i>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a href="#" class="btn btn-dark">Edit</a>
-            <span class="badge rounded-pill bg-primary">Primary</span>
-            <span class="badge rounded-pill bg-secondary">Secondary</span>
-            <span class="badge bg-primary">Primary</span>
-            <span class="badge bg-secondary">Secondary</span>
-            <span class="badge bg-success">Success</span>
-
-
-        </div>
-    </div>
-
-
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
+  <body>
+    <nav class="navbar">
+      <div class="brand-title">Mojito</div>
+      <div class="navbar-links">
+        <ul>
+          <li><a href="">Home</a></li>
         </ul>
-      </nav>
-
-
-
-
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <script src="/js/script.js"></script>
-</body>
-
+        <ul>
+          <li><a href="">About Us</a></li>
+        </ul>
+        <ul>
+          <li><a href="">Let's Make A Drink!</a></li>
+        </ul>
+      </div>
+    </nav>
+  </body>
 </html>

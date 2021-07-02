@@ -14,3 +14,16 @@ body{
     background-color: forestgreen;
     color: white;
 }
+
+.brand-title{
+    font-size: 1.5rem;
+    margin: .5rem;
+}
+
+.navbar-links{
+    display: flex;
+    margin: 0%;
+    padding:0%
+}
+
+.navbar-links-li{
