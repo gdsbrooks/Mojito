@@ -8,7 +8,7 @@ const DrinkModel = require('../models/Drink.model')
 
 router.get("/profile", (req, res, next) => {
     //get loggedinuser from session, search for it and return nickname, favorites.
-  res.render("index");
+  res.render("profilw");
 });
 
 module.exports = router;

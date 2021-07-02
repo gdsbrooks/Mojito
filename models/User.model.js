@@ -6,7 +6,7 @@ const userSchema = new Schema({
     require: true,
     unique: true
   },
-  hashedpassword: String,
+  hashedPassword: String,
 
   nickname: {
     type: String,

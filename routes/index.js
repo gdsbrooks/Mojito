@@ -6,3 +6,9 @@ router.get("/", (req, res, next) => {
 });
 
 module.exports = router;
+
+//About Us
+
+router.get('/aboutus', (req, res, next) => {
+  res.render("aboutus.hbs")
+})
