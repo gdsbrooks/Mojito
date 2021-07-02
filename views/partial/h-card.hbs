@@ -1,17 +1,27 @@
 
-<div class="card mb-3" style="max-width: 540px;"> 
+<div style=margin: 10;><div class="card mb-3" style="max-width: 540px;"> 
   <div class="row g-0">
     <div class="col-md-4">
       <img src="{{this.imageUrl}}" class="img-fluid rounded-start" alt="{{this.name}}">
     </div>
-      <div class="card-img-overlay">❤️</div>
+      <div class="card-img-overlay">❤️ <i class="bi-heart-fill"></i></div>
     <div class="col-md-8">
       <div class="card-body">
         <h4 class="card-title">{{this.name}}</h4>
         <h5 class="card-subtitletitle">Ingredients:</h5>
-
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+<ul>
+                {{#each this.ingredients}}
+                <li>{{amount}}{{unit}} {{name}}</li>
+                {{/each}}
+            </ul>
+        <p class="card-text">Method: <br> {{this.method}}</p>
+            <p class="card-text">Garnish: <br> {{this.garnish}}</p>
+            <p class="card-text">Note: <br> {{this.note}}</p>
+            <small class="text-muted">   
+                <a href="#" class="btn btn-dark">Edit</a>
+            <span class="badge rounded-pill bg-primary">{{this.source}}</span>
+            <br>
+            <span class="badge bg-secondary">{{this.ingredients.0.name}}</span></small></p>
       </div>
     </div>
   </div>
