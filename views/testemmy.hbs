@@ -1,22 +1,27 @@
-{{!-- <div class="container">
-    <div class="row">
-    
-    {{#each result}}
+<form action="/signup" method="POST">
+    <div class="mb-3">
+    <label for="nickname" class="form-label">Nickname</label>
+    <input name="nickname" type="text" class="form-control" id="nickname" aria-describedby="nickname" aria-label="default input "  placeholder="What shall we call you?">
+  </div>
+  <div class="mb-3">
+    <label for="InputEmail" class="form-label">Email</label>
+    <input name="email" type="text" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="InputPassword" class="form-label" placeholder="Please enter your email">Password</label>
+    <input name="password" type="password" class="form-control" id="InputPassword">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="Check" placeholder="Enter a Password">
+    <label class="form-check-label" for="Check1">Agree to Terms and condtions.</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Signup</button>
+</form>
 
-{{> vcard this}}
-
-{{/each}}
-</div>
-</div> --}}
 
 
-<div class="container">
-    <div class="row">
-    
-    {{#each result}}
+{{#if error}}
+  <p class="error">{{error}}</p>
+{{/if}}
 
-{{> hcard this}}
-
-{{/each}}
-</div>
-</div>
