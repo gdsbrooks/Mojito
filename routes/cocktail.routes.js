@@ -39,4 +39,13 @@ router.get("/test-cocktail", (req,res,next) => {
         next(err)
     });
 })
+
+router.get("/test-george", (req,res,next) => {
+    DrinkModel.find()
+    .then((result) => {
+        res.render('test-george.hbs', {result})
+    }).catch((err) => {
+        next(err)
+    });
+})
 module.exports = router;
