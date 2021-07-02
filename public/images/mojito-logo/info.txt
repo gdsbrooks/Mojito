@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Baloo-Regular
+font link: https://fonts.google.com/specimen/Baloo
+font author: Ek Type
+font author site: https://ektype.in/
+
+
+icon designer: ajmal kernain
+icon designer link: /ajmal
+        
+{"bg":"#30C47E","icon":"#2C4845","font":"#2C4845","slogan":"#405c59"}
+      
