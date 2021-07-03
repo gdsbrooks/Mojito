@@ -21,6 +21,11 @@
     <button type="submit" class="btn btn-primary">Signup</button>
     <div class="form-text">Have an account already? <a href="/signin">Join the party.</a></div>
     </form>
-    {{#if error}}
-    <p class="error">{{error}}</p>
+    <br>
+    <br>
+   {{#if error}}
+<div class="alert alert-danger alert-dismissible fade show" style="max-width: 320px;" role="alert">
+    {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     {{/if}}
+</div>
