@@ -31,14 +31,7 @@ router.post("/add-cocktail/:id", (req, res, next) => {
     });
 })
   
-router.get("/test-emmy", (req,res,next) => {
-    DrinkModel.find()
-    .then((result) => {
-        res.render('testemmy.hbs', {result})
-    }).catch((err) => {
-        next(err)
-    });
-})
+
 
 router.get("/test-george", (req,res,next) => {
     DrinkModel.find()
