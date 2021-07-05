@@ -1,4 +1,7 @@
-// NEEDS IMPORT
+const router = require("express").Router();
+const UserModel = require('../models/User.model')
+const DrinkModel = require('../models/Drink.model')
+
 
 //CREATE NOTE
 // <form action="/post-create" method="POST">
@@ -38,4 +41,7 @@ router.get('/posts', (req, res, next) => {
       });
   });
 
-  //needs EXPORT
+
+
+  
+  module.exports = router;
