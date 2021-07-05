@@ -4,13 +4,20 @@ const DrinkModel = require("../models/Drink.model");
 const { hashIt, isLoggedIn } = require("../middlewares/custom-middleware");
 const { db } = require("../models/User.model");
 
-// CREATE/ADD FAV DRINK
+// /ADD FAV DRINK
 
-// router.post(() => {
-//   const {drinkId} = req.body
-//   const {favDrinks, user: _id} = req.session.loggedInUser
-//   UserModel.findByIdAndUpdate(user, {favDrinks: })
-// })
+router.get('/drinks/fav/:drinkId', (req, res, next) => {
+  const {drinkId} = req.params
+  const {_id: user} = req.session.loggedInUser
+  console.log(req.params)
+  UserModel.findByIdAndUpdate(user, { $addToSet: { favDrinks: drinkId } }, {new: true} )
+  .then((result) => {
+    res.send(result)
+    console.log(result)
+  }).catch((err) => {
+    res.send(err)
+  });
+})
 
 // DELETE FAV DRINK
 

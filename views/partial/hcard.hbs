@@ -1,11 +1,11 @@
-{{!-- <div class="container justify-content-center mt-5"> --}}
+<div class="container justify-content-center mt-5">
   <div class="card col-md-9 border mx-md-5">
     <div class="row g-0 border">
                         <h4 class="card-header">{{this.name}}</h4>
 
       <div class="col-md-3 border">
-        <img src="{{this.imageUrl}}" class="rounded-start" style="width:100%;" alt="{{this.name}}">
-        {{!-- <div class="card-img-overlay">❤️ <i class="bi-heart-fill"></i></div> --}}
+        <img src="{{this.imageUrl}}" class="rounded-start" alt="{{this.name}}">
+        {{!-- <div class="card-img-overlay"> <i class="bi-heart-fill"></i></div> --}}
       </div>
 
       <div class="col-md 6 border">
@@ -26,7 +26,7 @@
   
    </div>
            <div class="card-footer">
-            <a href="#" class="btn btn-dark float-end">Edit</a>
+            <a href="/drinks/fav/{{this._id}}" class="btn btn-danger float-end">Favorite</a>
         <a href="/search/IBA_category/{{this.source}}"><span class="badge rounded-pill bg-primary">{{this.source}}</span></a>
         <a href="/search/{{this.ingredients.0.name}}"><span class="badge bg-secondary">{{this.ingredients.0.name}}</span></a>
         <a href="/search/{{this.ingredients.1.name}}"><span class="badge bg-secondary">{{this.ingredients.1.name}}</span></a>

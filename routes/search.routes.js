@@ -17,8 +17,8 @@ router.get("/search", (req, res, next) => {
   }); 
 })
 
-router.post("/search", (req, res, next) => {
-  console.log(Object.keys(req.body))
+router.get("/search/filter", (req, res, next) => {
+  console.log(Object.keys(req.params))
   DrinkModel.find({"ingredients.name": { $in: [Object.keys(req.body)]}})
   .then((result) => {
     res.render("search.hbs", {searchTerm, result})
