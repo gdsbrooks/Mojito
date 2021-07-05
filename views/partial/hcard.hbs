@@ -1,14 +1,16 @@
 {{!-- <div class="container justify-content-center mt-5"> --}}
-  <div class="card border mx-md-5">
+  <div class="card col-md-9 border mx-md-5">
     <div class="row g-0 border">
+                        <h4 class="card-header">{{this.name}}</h4>
+
       <div class="col-md-3 border">
         <img src="{{this.imageUrl}}" class="rounded-start" style="width:100%;" alt="{{this.name}}">
         {{!-- <div class="card-img-overlay">❤️ <i class="bi-heart-fill"></i></div> --}}
       </div>
 
       <div class="col-md 6 border">
+
         <div class="card-body">
-          <h4 class="card-title">{{this.name}}</h4>
           <h5 class="card-subtitletitle">Ingredients:</h5>
           <ul>
             {{#each this.ingredients}}
@@ -16,15 +18,19 @@
             {{/each}}
           </ul>
           <p class="card-text">Method: <br> {{this.method}}</p>
-          <p class="card-text">Garnish: <br> {{this.garnish}}</p>
-          <p class="card-text">Note: <br> {{this.note}}</p>
-          <div class="card-footer">
-            <a href="#" class="btn btn-dark float-md-end">Edit</a>
-            <span class="badge rounded-pill bg-primary mx-1 float-md-start" >{{this.source}}</span>
-            <span class="badge bg-secondary mx-1 float-md-start">{{this.ingredients.0.name}}</span></small></p>
-          </div>
-        </div>
+         {{#if this.garnish}} <p class="card-text">Garnish: <br> {{this.garnish}}</p> {{/if}}
+           {{#if this.note}} <p class="card-text">Note: <br> {{this.note}}</p> {{/if}}
+       
       </div>
     </div>
-  </div>
+  
+   </div>
+           <div class="card-footer">
+            <a href="#" class="btn btn-dark float-end">Edit</a>
+        <a href="/search/IBA_category/{{this.source}}"><span class="badge rounded-pill bg-primary">{{this.source}}</span></a>
+        <a href="/search/{{this.ingredients.0.name}}"><span class="badge bg-secondary">{{this.ingredients.0.name}}</span></a>
+        <a href="/search/{{this.ingredients.1.name}}"><span class="badge bg-secondary">{{this.ingredients.1.name}}</span></a>
+
+          </div>
+          </div>
 </div>
