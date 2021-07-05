@@ -12,10 +12,7 @@ const userSchema = new Schema({
     type: String,
     require: true,
   }, 
-  favDrinks: {
-    ref: 'Drink',
-    type: [Schema.Types.ObjectId]
-  }
+  favDrinks: [{type: Schema.Types.ObjectId, ref: 'Drink'}]
 });
 
 const User = model("User", userSchema);

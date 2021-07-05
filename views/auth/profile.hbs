@@ -1,4 +1,4 @@
-<p>Hello {{user.nickname}}. Welcome to Mojito?</p>
+<p>Hello {{result.nickname}}. Welcome to Mojito?</p>
 
 <br>
 <br>
@@ -9,5 +9,13 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     {{else}}
     Favorite Drinks:
-    {{user.favDrinks}}
+
+    <div class="container">
+      <div class="row">
+          
+    {{#each result.favDrinks}}
+    {{> minicard this}}
+    {{/each}}
+    </div>  
+    </div>
 {{/if}}
