@@ -1,1 +1,13 @@
 <p>Hello {{user.nickname}}. Welcome to Mojito?</p>
+
+<br>
+<br>
+
+{{#if error}}
+    <div class="alert alert-danger alert-dismissible fade show" style="max-width: 320px;" role="alert">
+    {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    {{else}}
+    Favorite Drinks:
+    {{user.favDrinks}}
+{{/if}}
