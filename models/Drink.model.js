@@ -27,7 +27,7 @@ const drinkSchema = new Schema({
             } 
         } 
     ],
-    avgRating:  Schema.Types.Decimal128        
+    avgRating: Number  
 });
 
 const Drink = model("Drink", drinkSchema);
