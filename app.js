@@ -42,7 +42,7 @@ const MongoStore = require('connect-mongo')
         maxAge: 1000 * 24 * 60 * 60
     },
     store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/mojito-store"
+        mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/Mojito"
     })
  }))
 

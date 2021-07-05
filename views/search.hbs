@@ -1,0 +1,54 @@
+<div class="container-md m-3">
+    <div class="row">
+        <div id="search-tools" class="container-md">
+            {{#if searchTerm}}<h3 class="m-3 text-center">You Searched for: <i>"{{searchTerm}}"</i> </h3>{{/if}}
+            <div class="row">
+                <div class="col-md-9">
+                    <form action="/search" method="POST">
+
+                        <input class="form-control" type="text" name="searchTerm" placeholder="Search" aria-label="Search">
+
+                        <input type="checkbox" class="btn-check btn-sm" id = "gin" name="gin" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="gin">Gin</label>
+
+                        <input type="checkbox" class="btn-check" id= "vodka" name="vodka" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="vodka">Vodka</label>
+
+                        <input type="checkbox" class="btn-check" id="whisky" name="whisky" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="whisky">Whiskey</label>
+
+                        <input type="checkbox" class="btn-check" id="rum" name="rum" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="rum">Rum</label>
+
+                        <input type="checkbox" class="btn-check" id="tequila" name="tequila" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="tequila">Tequila</label>
+
+                        <input type="checkbox" class="btn-check" id="brandy" name="brandy" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="brandy">Brandy</label>
+
+                        <input type="checkbox" class="btn-check" id="cream" name="cream" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="cream">Cream</label>
+
+
+
+                        <br>
+                        <input type="checkbox" class="btn-check" id="unforgettables" name="unforgettables" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="unforgettables">The Unforgettables</label>
+
+                        <input type="checkbox" class="btn-check" id="classics" name="classics" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="classics">Contemporary Classics</label>
+
+                        <input type="checkbox" class="btn-check" id="newera" name="newera" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="newera">New Era Drinks</label>
+                </div>
+                <div class="col-md-1"><button class="btn btn-outline-success" type="submit">Search</button></div>
+                </form>
+            </div>
+        </div>
+
+        {{#each result}}
+        {{> minicard this}}
+        {{/each}}
+
+    </div>
+</div>

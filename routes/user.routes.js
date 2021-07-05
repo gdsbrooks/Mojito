@@ -18,14 +18,15 @@ const { db } = require("../models/User.model");
 
 router.get("/profile", isLoggedIn, (req, res, next) => {
   console.log(req.session.loggedInUser);
+  const userId = req.session.loggedInUser._id
 
-  UserModel.findById({ user: req.session.ObjectId })
+  UserModel.findById({userId})
     .populate("favDrinks")
     .then((result) => {
-      res.render("auth/profile.hbs", { user: req.session.loggedInUser }, { user: req.session.favDrinks} );
+      res.render("auth/profile.hbs", {result});
     })
     .catch((err) => {
-      res.render('auth/profile', {error: 'You don not have and favorites in your list, add some.'})
+    res.render('auth/profile', {error: 'You do not have and favorites in your list, add some!'})
     });
 });
 

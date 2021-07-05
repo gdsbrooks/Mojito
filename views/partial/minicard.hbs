@@ -1,16 +1,16 @@
 <div class="col-md-3">
   <div class="card m-4">
     <div class="card-header">
-      <h4 class="card-title text-center">{{this.name}}</h4>
+      <a href="/drink/{{this._id}}"><h4 class="card-title text-center">{{this.name}}</h4>
     </div>
-    <img src="{{this.imageUrl}}" class="card-img-bottom" alt="{{this.name}}" />
+    <img src="{{this.imageUrl}}" class="card-img-bottom" alt="{{this.name}}" /></a>
     <div class="card-footer">
-      <div class="float-start">
-        <span class="badge rounded-pill bg-primary">{{this.source}}</span>
-      </div>
-      <div class="float-end">
-        <span class="badge bg-secondary">{{this.ingredients.0.name}}</span>
-      </div>
+     
+        <a href="/search/IBA_category/{{this.source}}"><span class="badge rounded-pill bg-primary">{{this.source}}</span></a>
+        <br>
+        <a href="/search/{{this.ingredients.0.name}}"><span class="badge bg-secondary">{{this.ingredients.0.name}}</span></a>
+        <a href="/search/{{this.ingredients.1.name}}"><span class="badge bg-secondary">{{this.ingredients.1.name}}</span></a>
+
 
     </div>
   </div>
