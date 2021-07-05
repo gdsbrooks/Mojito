@@ -22,6 +22,8 @@ router.post('/fav-create', (req, res, next) => {
 
   // ****************************************************************************************
 // GET route to display all the posts
+
+//  EXAMPLES HERE https://my.ironhack.com/lms/courses/course-v1:IRONHACK+WDFT52+202105_RMT/modules/ironhack-course-chapter_4/units/ironhack-course-chapter_5-sequential-vertical_1
 // ****************************************************************************************
 router.get('/posts', (req, res, next) => {
     Post.find()
