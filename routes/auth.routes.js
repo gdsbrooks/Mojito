@@ -78,4 +78,3 @@ router.post("/signin", (req, res, next) => {
 module.exports = router;
 
 
-//{"cookie":{"originalMaxAge":86400000,"expires":"2021-07-03T10:12:18.589Z","httpOnly":true,"path":"/"},"loggedInUser":{"favDrinks":[],"_id":"60dee6793beb6c4a0ae203b5","email":"3@4.com","nickname":"Cool Dude","hashedPassword":"$2a$10$YYVt1SWUxmtvdBOFG2nWk.dxFUdl5tGg2JfJcrgvrqqHN1CFiTlm6","__v":0}}
