@@ -21,7 +21,18 @@ router.get('/drinks/fav/:drinkId', (req, res, next) => {
 
 // DELETE FAV DRINK
 
-
+router.get('/drinks/fav-remove/:drinkId', (req, res, next) => {
+  const {drinkId} = req.params
+  const {_id: user} = req.session.loggedInUser
+  console.log(req.params)
+  UserModel.findByIdAndUpdate(user, { $pull: { favDrinks: drinkId } }, {new: true} )
+  .then((result) => {
+    res.send(result)
+    console.log(result)
+  }).catch((err) => {
+    res.send(err)
+  });
+})
 
 
 //DISPLAY FAV
