@@ -4,6 +4,23 @@ const DrinkModel = require("../models/Drink.model");
 const { hashIt, isLoggedIn } = require("../middlewares/custom-middleware");
 const { db } = require("../models/User.model");
 
+
+//DISPLAY PROFLIE
+
+router.get("/profile", isLoggedIn, (req, res, next) => {
+  console.log(req.session.loggedInUser);
+  const userId = req.session.loggedInUser._id
+
+  UserModel.findById(req.session.loggedInUser._id)
+    .populate('favDrinks')
+    .then((result) => {
+      res.render('auth/profile.hbs', {result});
+    })
+    .catch((err) => {
+    res.render('auth/profile', {error: 'You do not have and favorites in your list, add some!'})
+    });
+});
+
 // /ADD FAV DRINK
 
 router.get('/drinks/:drinkId/fav', (req, res, next) => {
@@ -34,21 +51,7 @@ router.get('/drinks/:drinkId/fav-remove', (req, res, next) => {
   });
 })
 
+// ADD COMMENT
 
-//DISPLAY PROFLIE
-
-router.get("/profile", isLoggedIn, (req, res, next) => {
-  console.log(req.session.loggedInUser);
-  const userId = req.session.loggedInUser._id
-
-  UserModel.findById(req.session.loggedInUser._id)
-    .populate('favDrinks')
-    .then((result) => {
-      res.render('auth/profile.hbs', {result});
-    })
-    .catch((err) => {
-    res.render('auth/profile', {error: 'You do not have and favorites in your list, add some!'})
-    });
-});
 
 module.exports = router;
