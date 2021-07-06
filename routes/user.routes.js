@@ -6,13 +6,13 @@ const { db } = require("../models/User.model");
 
 // /ADD FAV DRINK
 
-router.get('/drinks/fav/:drinkId', (req, res, next) => {
+router.get('/drinks/:drinkId/fav', (req, res, next) => {
   const {drinkId} = req.params
   const {_id: user} = req.session.loggedInUser
   console.log(req.params)
   UserModel.findByIdAndUpdate(user, { $addToSet: { favDrinks: drinkId } }, {new: true} )
   .then((result) => {
-    res.send(result)
+    res.redirect('/drinks/:drinkId')
     console.log(result)
   }).catch((err) => {
     res.send(err)
@@ -21,13 +21,13 @@ router.get('/drinks/fav/:drinkId', (req, res, next) => {
 
 // DELETE FAV DRINK
 
-router.get('/drinks/fav-remove/:drinkId', (req, res, next) => {
+router.get('/drinks/:drinkId/fav-remove', (req, res, next) => {
   const {drinkId} = req.params
   const {_id: user} = req.session.loggedInUser
   console.log(req.params)
   UserModel.findByIdAndUpdate(user, { $pull: { favDrinks: drinkId } }, {new: true} )
   .then((result) => {
-    res.send(result)
+    res.redirect('/drinks/:drinkId')
     console.log(result)
   }).catch((err) => {
     res.send(err)
@@ -35,7 +35,7 @@ router.get('/drinks/fav-remove/:drinkId', (req, res, next) => {
 })
 
 
-//DISPLAY FAV
+//DISPLAY PROFLIE
 
 router.get("/profile", isLoggedIn, (req, res, next) => {
   console.log(req.session.loggedInUser);

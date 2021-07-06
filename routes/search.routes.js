@@ -1,7 +1,8 @@
 const router = require("express").Router();
 
 const UserModel = require('../models/User.model')
-const DrinkModel = require('../models/Drink.model')
+const DrinkModel = require('../models/Drink.model');
+const { randomDrink } = require("../middlewares/custom-middleware");
 
 ///Search ROUTES///
 // - random, by ID, 
@@ -30,7 +31,7 @@ router.get("/search/filter", (req, res, next) => {
   }); 
 })
 
-router.get("/search/IBA_category/:searchTerm", (req, res, next) => {
+router.get("/drink/IBA_category/:searchTerm", (req, res, next) => {
   const searchTerm = req.params.searchTerm
   DrinkModel.find({source: searchTerm}).sort({name: 1})
   .then((result) => {
@@ -55,17 +56,11 @@ router.get("/search/:searchTerm", (req, res, next) => {
   }); 
 })
 
-router.get("/random", async (req, res, next) =>  {
-  try {
-    const drinkCount = await DrinkModel.countDocuments()
-    const random = await Math.floor(Math.random() * drinkCount)
-    const result = await DrinkModel.findOne().skip(random)
-    await res.render("testgeorge.hbs", {result})
-  } 
-  catch(err) {
-    next(err)
-  }
+router.get("/drink/random", randomDrink, (req, res, next) =>  {
+  console.log(req.session.randomDrink)
+  res.render('singleDrink.hbs', {result: req.session.randomDrink})
 })
+
   router.get("/drink/:drinkId", (req,res,next) => {
     const drinkId = req.params.drinkId
     DrinkModel.findById(drinkId)
