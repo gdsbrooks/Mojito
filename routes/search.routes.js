@@ -63,9 +63,9 @@ router.get("/drink/random", randomDrink, (req, res, next) =>  {
 
   router.get("/drink/:drinkId", (req,res,next) => {
     const drinkId = req.params.drinkId
+    console.log(req.app.locals.isLoggedIn)
     DrinkModel.findById(drinkId)
     .then((result) => {
-      console.log(result)
       res.render('singledrink.hbs', {result})
     }).catch((err) => {
       next(err)
