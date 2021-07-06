@@ -115,11 +115,11 @@
                 {{/if}}
                 <!--END EDIT MODAL & BUTTON-->
             </div>
-                <a href="/search/IBA_category/{{this.source}}"><span
+                <a href="/search/?searchTerm={{result.source}}"><span
                         class="badge rounded-pill bg-primary">{{result.source}}</span></a>
-                <a href="/search/{{this.ingredients.0.name}}"><span
+                <a href="/search/?searchTerm={{result.ingredients.0.name}}"><span
                         class="badge bg-secondary">{{result.ingredients.0.name}}</span></a>
-                <a href="/search/{{this.ingredients.1.name}}"><span
+                <a href="/search/?searchTerm={{result.ingredients.1.name}}"><span
                         class="badge bg-secondary">{{result.ingredients.1.name}}</span></a>
 
             </div>
