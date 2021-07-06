@@ -35,6 +35,7 @@ const isLoggedIn = (req, res, next) => {
       }
       next()
   }
+  
 const randomDrink = async(req, res, next) => {
   try {
     const drinkCount = await DrinkModel.countDocuments()
