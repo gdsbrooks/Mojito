@@ -35,15 +35,13 @@ const isLoggedIn = (req, res, next) => {
       }
       next()
   }
-  
+
 const randomDrink = async(req, res, next) => {
   try {
     const drinkCount = await DrinkModel.countDocuments()
     const random = await Math.floor(Math.random() * drinkCount)
     const result = await DrinkModel.find()
-    console.log(`random drink:`, result[random])
     req.session.randomDrink = result[random]
-    console.log('req.session.randomDrink', req.session.randomDrink)
     next()
   } 
   catch(err) {
