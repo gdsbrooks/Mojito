@@ -24,7 +24,7 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   try {
     const { email, nickname, password } = req.body
-    const createdUser = await UserModel.create({ email, nickname, hashedPassword: hashIt(password) })
+    await UserModel.create({ email, nickname, hashedPassword: hashIt(password) })
     res.redirect('/signin')
   }
   catch (err) {

@@ -1,66 +1,50 @@
 const router = require("express").Router();
 
-const UserModel = require('../models/User.model')
-const DrinkModel = require('../models/Drink.model');
-const { randomDrink } = require("../middlewares/custom-middleware");
+const UserModel = require("../models/User.model");
+const DrinkModel = require("../models/Drink.model");
+const { randomDrink, fetchUser } = require("../middlewares/custom-middleware");
 
-///Search ROUTES///
-// - random, by ID, 
+///Search ROUTE ---------------------------------------------
 
 router.get("/search", (req, res, next) => {
-  const searchTerm = req.params.searchTerm
-  if (searchTerm)
-
-  DrinkModel.find().sort({name: 1})
-  .then((result) => {
-    res.render("search.hbs", {result})
+  let searchTerm = req.query.searchTerm;
+  if (!searchTerm) { searchTerm = " "}
+  DrinkModel.find({
+    $or: [
+      { source: { $regex: searchTerm, $options: "i" } },
+      { "ingredients.name": { $regex: searchTerm, $options: "i" } },
+      { name: { $regex: searchTerm, $options: "i" } },
+    ],
   })
-  .catch((err) => {
-    next(err)
-  }); 
-})
-
-router.get("/search/IBA/:searchTerm", (req, res, next) => {
-  const searchTerm = req.params.searchTerm
-  DrinkModel.find({source: searchTerm}).sort({name: 1})
-  .then((result) => {
-    res.render("search.hbs", {searchTerm, result})
-  })
-  .catch((err) => {
-    next(err)
-  }); 
-})
-
-router.get("/search/:searchTerm", (req, res, next) => {
-  const searchTerm = req.params.searchTerm
-  
-  DrinkModel.find({$or: [{source: { $regex: searchTerm, $options: "i" }}, {"ingredients.name": { $regex: searchTerm, $options: "i" }} , {name: { $regex: searchTerm, $options: "i"  }}]})
-  .sort({name: 1})
-  .then((result) => {
-    res.render("search.hbs", {searchTerm, result})
-  
-  })
-  .catch((err) => {
-    next(err)
-  }); 
-})
-
-router.get("/drink/random", randomDrink, (req, res, next) =>  {
-  console.log(req.session.randomDrink)
-  res.render('singleDrink.hbs', {result: req.session.randomDrink})
-})
-
-  router.get("/drink/:drinkId", (req,res,next) => {
-    const drinkId = req.params.drinkId
-    const favDrinks = req.session.loggedInUser.favDrinks
-    const isFavorite = favDrinks.includes(drinkId)
-    console.log(isFavorite)
-    DrinkModel.findById(drinkId)
+    .sort({ name: 1 })
     .then((result) => {
-      res.render('singledrink.hbs', {result, isFavorite})
-      console.log(favDrinks)
-    }).catch((err) => {
-      next(err)
+      res.render("search.hbs", { searchTerm, result });
+    })
+    .catch((err) => {
+      next(err);
     });
 });
+
+// RANDOM ROUTE ----------------------------------------------
+
+router.get("/drink/random", randomDrink, (req, res, next) => {
+  res.render("singleDrink.hbs", { result: req.session.randomDrink });
+});
+
+// SINGLE DRINK -----------------------------------------------
+
+router.get("/drink/:drinkId", (req, res, next) => {
+  const drinkId = req.params.drinkId;
+
+  const favDrinks = req.session.loggedInUser.favDrinks;
+  const isFavorite = favDrinks.includes(drinkId);
+  DrinkModel.findById(drinkId)
+    .then((result) => {
+      res.render("singledrink.hbs", { result, isFavorite });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = router;
