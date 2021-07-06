@@ -9,10 +9,12 @@ const DrinkModel = require('../models/Drink.model')
 router.get("/search", (req, res, next) => {
   DrinkModel.find().sort({name: 1})
   .then((result) => {
+    console.log(result)
     res.render("search.hbs", {result})
   
   })
   .catch((err) => {
+    console.log(err)
     next(err)
   }); 
 })
