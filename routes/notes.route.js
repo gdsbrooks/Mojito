@@ -5,8 +5,9 @@ const DrinkModel = require('../models/Drink.model')
 
 //CREATE NOTE
 // <form action="/post-create" method="POST">
-router.post('/fav-create', (req, res, next) => {
-    const { title, content, author } = req.body;
+router.post('/drinks/:drinkId/add-comment', (req, res, next) => {
+    const { comment, rating } = req.body;
+
     // 'author' represents the ID of the user document
    
     Post.create({ title, content, author })
