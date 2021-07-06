@@ -52,10 +52,13 @@ router.get("/drink/random", randomDrink, (req, res, next) =>  {
 
   router.get("/drink/:drinkId", (req,res,next) => {
     const drinkId = req.params.drinkId
-    console.log(req.app.locals.isLoggedIn)
+    const favDrinks = req.session.loggedInUser.favDrinks
+    const isFavorite = favDrinks.includes(drinkId)
+    console.log(isFavorite)
     DrinkModel.findById(drinkId)
     .then((result) => {
-      res.render('singledrink.hbs', {result})
+      res.render('singledrink.hbs', {result, isFavorite})
+      console.log(favDrinks)
     }).catch((err) => {
       next(err)
     });

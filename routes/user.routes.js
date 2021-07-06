@@ -29,7 +29,7 @@ router.get('/drinks/:drinkId/fav', (req, res, next) => {
   console.log(req.params)
   UserModel.findByIdAndUpdate(user, { $addToSet: { favDrinks: drinkId } }, {new: true} )
   .then((result) => {
-    res.redirect('/drinks/:drinkId')
+    res.redirect('/profile')
     console.log(result)
   }).catch((err) => {
     res.send(err)
@@ -44,8 +44,9 @@ router.get('/drinks/:drinkId/fav-remove', (req, res, next) => {
   console.log(req.params)
   UserModel.findByIdAndUpdate(user, { $pull: { favDrinks: drinkId } }, {new: true} )
   .then((result) => {
-    res.redirect('/drinks/:drinkId')
     console.log(result)
+    res.redirect('/profile')
+    
   }).catch((err) => {
     res.send(err)
   });
