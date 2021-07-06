@@ -1,15 +1,10 @@
 {{!-- <div class="container justify-content-center mt-5"> --}}
   <div class="card col-md-9 border mx-md-5">
     <div class="row g-0 border">
-    <div> <h4 class="card-header">{{this.name}}</h4> 
-     {{#if this.favDrinks}}
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
-  <path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-</svg>
-        {{else}}<div class="card-img-overlay"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-bookmark-heart" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-</svg></div> {{/if}}
+
+    <div> 
+      <h4 class="card-header">{{this.name}}</h4> 
+
 </div>
 
       <div class="col-md-3 border">
@@ -35,7 +30,40 @@
   
    </div>
            <div class="card-footer">
-            <a href="#" class="btn btn-dark float-end">Edit</a>
+            
+<!--EDIT MODAL & BUTTON-->
+{{#if isLoggedIn}}
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+  Edit
+</button>
+<!--EDIT MODAL-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Comment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Comment:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{else}}
+<div class="form-text"> Want to Comment?<a href="/signup">Join the party.</a></div>
+{{/if}}
+<!--END EDIT MODAL & BUTTON-->
+
         <a href="/search/IBA_category/{{this.source}}"><span class="badge rounded-pill bg-primary">{{this.source}}</span></a>
         <a href="/search/{{this.ingredients.0.name}}"><span class="badge bg-secondary">{{this.ingredients.0.name}}</span></a>
         <a href="/search/{{this.ingredients.1.name}}"><span class="badge bg-secondary">{{this.ingredients.1.name}}</span></a>

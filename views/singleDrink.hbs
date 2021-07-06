@@ -1,4 +1,77 @@
 
 <div class="container">
-{{> hcard result}}
+
+{{!-- <div class="container justify-content-center mt-5"> --}}
+  <div class="card col-md-9 border mx-md-5">
+    <div class="row g-0 border">
+
+    <div> 
+      <h4 class="card-header">{{result.name}}</h4> 
+
+</div>
+
+      <div class="col-md-3 border">
+        <img src="{{result.imageUrl}}" class="rounded-start" style="width:100%;" alt="{{result.name}}">
+        {{!<div class="card-img-overlay">❤️ <i class="bi-heart-fill"></i></div> --}}
+      </div>
+
+      <div class="col-md 6 border">
+
+        <div class="card-body">
+          <h5 class="card-subtitletitle">Ingredients:</h5>
+          <ul>
+            {{#each result.ingredients}}
+            <li>{{amount}}{{unit}} {{name}}</li>
+            {{/each}}
+          </ul>
+          <p class="card-text">Method: <br> {{result.method}}</p>
+         {{#if result.garnish}} <p class="card-text">Garnish: <br> {{result.garnish}}</p> {{/if}}
+           {{#if resul.note}} <p class="card-text">Note: <br> {{result.note}}</p> {{/if}}
+       
+      </div>
+    </div>
+  
+   </div>
+           <div class="card-footer">
+            
+<!--EDIT MODAL & BUTTON-->
+{{#if isLoggedIn}}
+  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+  Add Comment
+</button>
+<!--EDIT MODAL-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Comment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Comment:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{else}}
+<div class="form-text float-end"> Want to Comment?<a href="/signup">Join the party.</a></div>
+{{/if}}
+<!--END EDIT MODAL & BUTTON-->
+
+        <a href="/search/IBA_category/{{this.source}}"><span class="badge rounded-pill bg-primary">{{result.source}}</span></a>
+        <a href="/search/{{this.ingredients.0.name}}"><span class="badge bg-secondary">{{result.ingredients.0.name}}</span></a>
+        <a href="/search/{{this.ingredients.1.name}}"><span class="badge bg-secondary">{{result.ingredients.1.name}}</span></a>
+
+          </div>
+          </div>
+</div>
 </div>
