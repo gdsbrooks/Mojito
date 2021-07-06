@@ -13,6 +13,7 @@ const drinkSchema = new Schema({
         default: "The Unforgettables"
     },
     imageUrl:   String,
+    tags: [String],
     feedback:   [ 
         {
             user: {

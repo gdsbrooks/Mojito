@@ -1,77 +1,101 @@
-
 <div class="container">
 
-{{!-- <div class="container justify-content-center mt-5"> --}}
-  <div class="card col-md-9 border mx-md-5">
-    <div class="row g-0 border">
+    {{!-- <div class="container justify-content-center mt-5"> --}}
+        <div class="card col-md-9 border mx-md-5">
+            <div class="row g-0 border">
 
-    <div> 
-      <h4 class="card-header">{{result.name}}</h4> 
+                <div>
+                    <h4 class="card-header">{{result.name}}</h4>
 
-</div>
+                </div>
 
-      <div class="col-md-3 border">
-        <img src="{{result.imageUrl}}" class="rounded-start" style="width:100%;" alt="{{result.name}}">
-        {{!<div class="card-img-overlay">❤️ <i class="bi-heart-fill"></i></div> --}}
-      </div>
+                <div class="col-md-3 border">
+                    <img src="{{result.imageUrl}}" class="rounded-start" style="width:100%;" alt="{{result.name}}">
+                    {{!<div class="card-img-overlay">❤️ <i class="bi-heart-fill"></i></div> --}}
+                </div>
 
-      <div class="col-md 6 border">
+                <div class="col-md 6 border">
 
-        <div class="card-body">
-          <h5 class="card-subtitletitle">Ingredients:</h5>
-          <ul>
-            {{#each result.ingredients}}
-            <li>{{amount}}{{unit}} {{name}}</li>
-            {{/each}}
-          </ul>
-          <p class="card-text">Method: <br> {{result.method}}</p>
-         {{#if result.garnish}} <p class="card-text">Garnish: <br> {{result.garnish}}</p> {{/if}}
-           {{#if resul.note}} <p class="card-text">Note: <br> {{result.note}}</p> {{/if}}
-       
-      </div>
+                    <div class="card-body">
+                        <h5 class="card-subtitletitle">Ingredients:</h5>
+                        <ul>
+                            {{#each result.ingredients}}
+                            <li>{{amount}}{{unit}} {{name}}</li>
+                            {{/each}}
+                        </ul>
+                        <p class="card-text">Method: <br> {{result.method}}</p>
+                        {{#if result.garnish}} <p class="card-text">Garnish: <br> {{result.garnish}}</p> {{/if}}
+                        {{#if resul.note}} <p class="card-text">Note: <br> {{result.note}}</p> {{/if}}
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer">
+
+                <!--FAV ADD/REMOV BUTTON-->
+                {{#if favDrinks}}
+                <a href="/drinks/{{result._id}}/fav"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+</svg> </a>
+
+                {{else}}
+                <a href="/drinks/{{result._id}}/fav-remove"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                        height="16" fill="red" class="bi bi-heart" viewBox="0 0 16 16">
+                        <path
+                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                    </svg> </a>
+
+                {{/if}}
+
+
+                <!--END FAV ADD/REMOV BUTTON-->
+
+                <!--EDIT MODAL & BUTTON-->
+                {{#if isLoggedIn}}
+                <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Add Comment
+                </button>
+                <!--EDIT MODAL-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New Comment</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Comment:</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{else}}
+                <div class="form-text float-end"> Want to Comment?<a href="/signup">Join the party.</a></div>
+                {{/if}}
+                <!--END EDIT MODAL & BUTTON-->
+
+                <a href="/search/IBA_category/{{this.source}}"><span
+                        class="badge rounded-pill bg-primary">{{result.source}}</span></a>
+                <a href="/search/{{this.ingredients.0.name}}"><span
+                        class="badge bg-secondary">{{result.ingredients.0.name}}</span></a>
+                <a href="/search/{{this.ingredients.1.name}}"><span
+                        class="badge bg-secondary">{{result.ingredients.1.name}}</span></a>
+
+            </div>
+        </div>
     </div>
-  
-   </div>
-           <div class="card-footer">
-            
-<!--EDIT MODAL & BUTTON-->
-{{#if isLoggedIn}}
-  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-  Add Comment
-</button>
-<!--EDIT MODAL-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Comment</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-    
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Comment:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-{{else}}
-<div class="form-text float-end"> Want to Comment?<a href="/signup">Join the party.</a></div>
-{{/if}}
-<!--END EDIT MODAL & BUTTON-->
-
-        <a href="/search/IBA_category/{{this.source}}"><span class="badge rounded-pill bg-primary">{{result.source}}</span></a>
-        <a href="/search/{{this.ingredients.0.name}}"><span class="badge bg-secondary">{{result.ingredients.0.name}}</span></a>
-        <a href="/search/{{this.ingredients.1.name}}"><span class="badge bg-secondary">{{result.ingredients.1.name}}</span></a>
-
-          </div>
-          </div>
-</div>
 </div>

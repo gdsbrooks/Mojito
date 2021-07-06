@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const UserModel = require('../models/User.model')
+const DrinkModel = require('../models/Drink.model')
 
 const hashIt = (password) => {
     const salt = bcrypt.genSaltSync(10);
@@ -35,4 +36,16 @@ const isLoggedIn = (req, res, next) => {
       next()
   }
 
-  module.exports = {hashIt, isLoggedIn, signInUser}
+const randomDrink = async(req, res, next) => {
+  try {
+    const drinkCount = await DrinkModel.countDocuments()
+    const random = await Math.floor(Math.random() * drinkCount)
+    const result = await DrinkModel.find()
+    req.session.randomDrink = result[random]
+    next()
+  } 
+  catch(err) {
+    next(err)
+  }
+}
+  module.exports = {hashIt, isLoggedIn, signInUser, randomDrink}
