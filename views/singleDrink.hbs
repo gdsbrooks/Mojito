@@ -83,46 +83,43 @@
                                 </div>
                                 <div class="modal-body">
 
+                                    <form method="POST", action="/drinks/{{result._id}}/add-comment">
                                     <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Comment:</label>
-                                        <textarea class="form-control" id="message-text" name="comment"></textarea>
+                                        <label for="comment" class="col-form-label">Comment:</label>
+                                        <input type="text" class="form-control" id="comment" name="comment"></textarea>
                                     </div>
                                     <div class="mb-3 justify-content-evenly">
-                                        <label for="message-text" class="col-form-label me-5">Rating:</label>
-
-                                        <div class="btn-group justify-content-center" role="group"
-                                            aria-label="Basic radio toggle button group">
-
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1"
-                                                autocomplete="off">
-                                            <label class="btn btn-outline-warning" for="btnradio1">1</label>
+                                        <label for="radio" class="col-form-label me-5">Rating:</label>
 
                                     <div class="btn-group justify-content-center" role="group" aria-label="Basic radio toggle button group">
                                         
-                                        <input type="radio" class="btn-check" name="rating" id="btnradio1" value=1 autocomplete="off">
+                                        <input type="radio" class="btn-check" name="rating" id="btnradio1" value="1" autocomplete="off">
                                         <label class="btn btn-outline-warning" for="btnradio1">1</label>
 
 
-                                        <input type="radio" class="btn-check" name="rating" id="btnradio2" value=2 autocomplete="off">
+                                        <input type="radio" class="btn-check" name="rating" id="btnradio2" value="2" autocomplete="off">
                                         <label class="btn btn-outline-warning" for="btnradio2">2</label>
 
 
-                                        <input type="radio" class="btn-check" name="rating" id="btnradio3" value=3 autocomplete="off" checked>
+                                        <input type="radio" class="btn-check" name="rating" id="btnradio3" value="3" autocomplete="off" checked>
                                         <label class="btn btn-outline-warning" for="btnradio3">3</label>
 
-                                        <input type="radio" class="btn-check" name="rating" id="btnradio4" value=4 autocomplete="off" >
+                                        <input type="radio" class="btn-check" name="rating" id="btnradio4" value="4" autocomplete="off" >
                                         <label class="btn btn-outline-warning" for="btnradio4">4</label>
 
-                                        <input type="radio" class="btn-check" name="rating" id="btnradio5" value=5 autocomplete="off">
+                                        <input type="radio" class="btn-check" name="rating" id="btnradio5" value="5" autocomplete="off">
+                                        <label class="btn btn-outline-warning" for="btnradio5">5</label>
 
                                     </div>
-                                    </form>
+                                    
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success">Save</button>
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                    </form>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

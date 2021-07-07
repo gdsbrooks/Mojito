@@ -55,6 +55,7 @@ router.post('/drinks/:drinkId/add-comment', async (req, res, next) => {
     const user = req.session.loggedInUser
     const { comment, rating } = req.body;
     const newFeedback = {user, comment, rating}
+    console.log(newFeedback)
     const result = await DrinkModel.findByIdAndUpdate(drinkId, { $addToSet: { feedback: newFeedback } }, {new: true} )
     console.log(result)
     res.redirect(`back`)
