@@ -47,7 +47,8 @@ router.get('/drinks/:drinkId/fav-remove', (req, res, next) => {
   });
 })
 
-//CREATE NOTE
+//ADD COMMENT
+
 router.post('/drinks/:drinkId/add-comment', async (req, res, next) => {
   try {
     const drinkId = req.params.drinkId
@@ -55,6 +56,7 @@ router.post('/drinks/:drinkId/add-comment', async (req, res, next) => {
     const { comment, rating } = req.body;
     const newFeedback = {user, comment, rating}
     const result = await DrinkModel.findByIdAndUpdate(drinkId, { $addToSet: { feedback: newFeedback } }, {new: true} )
+    console.log(result)
     res.redirect(`back`)
   }
   catch(err){
@@ -62,6 +64,8 @@ router.post('/drinks/:drinkId/add-comment', async (req, res, next) => {
   }
 
 })
+
+//
 
   // 'author' represents the ID of the user document
  
