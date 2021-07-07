@@ -1,29 +1,32 @@
+<img src="/images/coverstraw.jpg">
+<main class="mb-auto h-100 d-flex justify-content-between align-items-center">
+ 
+  <h2>Welcome To Mojito</h2>
+  <p> Do you want to learn to mix cocktails like a professional bartender?
+    Let Mojito teach you the are of Mixology. Browse and search through our IBA currated list of cocktai recipes.
+  </p>
+  <p>
+    Lookup coctails by name or ingredient, post your tasking notes, share recipes with your friends.
+    Learn and drink with us.</p>
 
 
- <main class="mb-auto">
-      <h2>Welcome To Mojito</h2>
-      <p> Do you want to learn to mix cocktails like a professional bartender?
-        Let Mojito teach you the are of Mixology. Browse and search through our IBA currated list of cocktai recipes.
-      </p>
-      <p>
-        Lookup coctails by name or ingredient, post your tasking notes, share recipes with your friends.
-        Learn and drink with us.</p>
+  
+</main>
+<div id="minicard" class="col-md-3">
+    <div class="card m-4">
+      <div class="card-header">
+        <h4 class="card-title text-center ">{{result.name}}</h4>
+      </div>
+      <img src="{{result.imageUrl}}" class="card-img-bottom" alt="{{this.name}}" /></a>
+      <div class="card-footer">
 
-    </main>
-
-    <div id="minicard" class="col-md-3">
-  <div class="card m-4">
-    <div class="card-header">
-    <h4 class="card-title text-center ">{{result.name}}</h4>
-    </div>
-    <img src="{{result.imageUrl}}" class="card-img-bottom" alt="{{this.name}}" /></a>
-    <div class="card-footer">
-     
         <span class="badge rounded-pill bg-success">{{result.source}}</span></a>
         <br>
         <span class="badge bg-secondary">{{result.ingredients.0.name}}</span></a>
         <span class="badge bg-secondary">{{result.ingredients.1.name}}</span></a>
+      </div>
     </div>
   </div>
-</div>
 
+<BR>
+<BR>
