@@ -34,14 +34,18 @@ router.post("/add-cocktail/:id", (req, res, next) => {
   
 
 
-router.get("/test-george", (req,res,next) => {
-    DrinkModel.find()
-    .then((result) => {
-        res.render('testgeorge.hbs', {result})
-    }).catch((err) => {
-        next(err)
-    });
-})
+router.get("/test/:drinkId", async (req, res, next) => {
+    try {
+      const drinkId = req.params.drinkId;
+      const user = await UserModel.findById(req.session.loggedInUser._id)
+      const isFavorite = user.favDrinks.includes(drinkId);
+      const result = await DrinkModel.findById(drinkId).populate('feedback.user', 'nickname')
+      res.render("testgeorge.hbs", { result, isFavorite });
+    }
+    catch(drinkbyIDerror){
+        next(drinkbyIDerror);
+    }
+  });
 
 router.get("/testemmy", (req,res,next) => {
     DrinkModel.find()

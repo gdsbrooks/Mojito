@@ -1,10 +1,153 @@
 <div class="container">
-    <div class="row">
-    
-    {{#each result}}
 
-{{> minicard this}}
+    {{!-- <div class="container justify-content-center mt-5"> --}}
+        <div class="card col-md-10 border-success mx-md-3">
+            <div class="row g-0">
 
-{{/each}}
-</div>
+                <div class="card-header">
+                    <h4 class="float-start">{{result.name}}</h4>
+                    <div class="float-end text-warning"> Average Rating: X</div>
+
+                </div>
+
+                <div class="col-md-3 border">
+                    <img src="{{result.imageUrl}}" class="rounded-start" style="width:100%;" alt="{{result.name}}">
+                    {{!<div class="card-img-overlay">❤️ <i class="bi-heart-fill"></i></div> --}}
+                </div>
+
+                <div class="col-md 6 ">
+
+                    <div class="card-body ">
+                        <h5 class="card-subtitletitle">Ingredients:</h5>
+                        <ul>
+                            {{#each result.ingredients}}
+                            <li>{{amount}}{{unit}} {{name}}</li>
+                            {{/each}}
+                        </ul>
+                        <p class="card-text">Method: <br> {{result.method}}</p>
+                        {{#if result.garnish}} <p class="card-text">Garnish: <br> {{result.garnish}}</p> {{/if}}
+                        {{#if resul.note}} <p class="card-text">Note: <br> {{result.note}}</p> {{/if}}
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <div class="float-start">
+
+                    <a href="/search/?searchTerm={{result.source}}"><span
+                            class="badge rounded-pill bg-success">{{result.source}}</span></a>
+                    <a href="/search/?searchTerm={{result.ingredients.0.name}}"><span
+                            class="badge bg-secondary">{{result.ingredients.0.name}}</span></a>
+                    <a href="/search/?searchTerm={{result.ingredients.1.name}}"><span
+                            class="badge bg-secondary">{{result.ingredients.1.name}}</span></a>
+                </div>
+
+                {{#if isLoggedIn }}
+
+                <div class="float-end">
+                    <!--FAV ADD/REMOV BUTTON-->
+                    {{#if isFavorite}}
+                    <a href="/drinks/{{result._id}}/fav-remove">
+                        <button type="button" class="btn btn-danger mx-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                            </svg></button></a>
+                    {{else}}
+                    <a href="/drinks/{{result._id}}/fav">
+                        <button type="button" class="btn btn-outline-danger mx-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                            </svg></button></a>
+                    {{/if}}
+                    <!--END FAV ADD/REMOVE BUTTON-->
+
+                    <!--EDIT MODAL & BUTTON-->
+
+                    <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Add Comment
+                    </button>
+                    <!--EDIT MODAL-->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">What did you think?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form method="POST" , action="/drinks/{{result._id}}/add-comment">
+                                        <div class="mb-3">
+                                            <label for="comment" class="col-form-label">Comment:</label>
+                                            <input type="text" class="form-control" id="comment"
+                                                name="comment"></textarea>
+                                        </div>
+                                        <div class="mb-3 justify-content-evenly">
+                                            <label for="radio" class="col-form-label me-5">Rating:</label>
+
+                                            <div class="btn-group justify-content-center" role="group"
+                                                aria-label="Basic radio toggle button group">
+
+                                                <input type="radio" class="btn-check" name="rating" id="btnradio1"
+                                                    value="1" autocomplete="off">
+                                                <label class="btn btn-outline-warning" for="btnradio1">1</label>
+
+
+                                                <input type="radio" class="btn-check" name="rating" id="btnradio2"
+                                                    value="2" autocomplete="off">
+                                                <label class="btn btn-outline-warning" for="btnradio2">2</label>
+
+
+                                                <input type="radio" class="btn-check" name="rating" id="btnradio3"
+                                                    value="3" autocomplete="off" checked>
+                                                <label class="btn btn-outline-warning" for="btnradio3">3</label>
+
+                                                <input type="radio" class="btn-check" name="rating" id="btnradio4"
+                                                    value="4" autocomplete="off">
+                                                <label class="btn btn-outline-warning" for="btnradio4">4</label>
+
+                                                <input type="radio" class="btn-check" name="rating" id="btnradio5"
+                                                    value="5" autocomplete="off">
+                                                <label class="btn btn-outline-warning" for="btnradio5">5</label>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-success">Save</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--END EDIT MODAL & BUTTON-->
+                </div>
+                {{else}}
+                <div class="form-text float-end"> Want to Like and Comment?<a href="/signup">Join the party.</a>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        </div>
+        <div class="card col-md-10 border m-md-3 border-success">
+            <div class="card-header  bg-success border-success"><h5 class="text-white">User comments:</h5></div>
+
+                <ul class="list-group list-group-flush">
+                    {{#each result.feedback}}
+                    <li class="list-group-item">{{this.user.nickname}} said: <i>"{{this.comment}}"</i></li>
+                    {{/each}}
+                </ul>
+            
+        </div>
 </div>

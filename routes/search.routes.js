@@ -38,11 +38,10 @@ router.get("/drink/:drinkId", async (req, res, next) => {
     const drinkId = req.params.drinkId;
     const user = await UserModel.findById(req.session.loggedInUser._id)
     const isFavorite = user.favDrinks.includes(drinkId);
-    const result = await DrinkModel.findById(drinkId)
-    console.log(`user is --- `, user)
-    console.log(`isFavorite is --- `, isFavorite)
-    console.log(`result is ---`, result)
-    res.render("singledrink.hbs", { result, isFavorite });
+    const result = await DrinkModel.findById(drinkId).populate('feedback.user', 'nickname')
+    console.log(result.feedback[0])
+    res.send({result, isFavorite})
+    //res.render("singledrink.hbs", { result, isFavorite });
   }
   catch(drinkbyIDerror){
       next(drinkbyIDerror);
