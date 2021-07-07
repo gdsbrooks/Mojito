@@ -11,6 +11,19 @@
 
     </main>
 
-       
-       <p>{{> minicard result}}</p>
-    
+    <div id="minicard" class="col-md-3">
+  <div class="card m-4">
+    <div class="card-header">
+    <h4 class="card-title text-center ">{{result.name}}</h4>
+    </div>
+    <img src="{{result.imageUrl}}" class="card-img-bottom" alt="{{this.name}}" /></a>
+    <div class="card-footer">
+     
+        <span class="badge rounded-pill bg-primary">{{result.source}}</span></a>
+        <br>
+        <span class="badge bg-secondary">{{result.ingredients.0.name}}</span></a>
+        <span class="badge bg-secondary">{{result.ingredients.1.name}}</span></a>
+    </div>
+  </div>
+</div>
+
