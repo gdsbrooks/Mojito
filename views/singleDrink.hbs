@@ -32,37 +32,34 @@
 
             </div>
             <div class="card-footer">
+
+
+                {{#if isLoggedIn }}
+
                 <div class="float-end">
                     <!--FAV ADD/REMOV BUTTON-->
-                    {{#if isLoggedIn }}
-                            {{#if isFavorite}}
-                            <a href="/drinks/{{result._id}}/fav-remove">
-
-                                <button type="button" class="btn btn-danger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                    </svg></button></a>
-
-                            {{else}}
-                            <a href="/drinks/{{result._id}}/fav"> <button type="button" class="btn btn-outline-danger">
-
-                                    <button type="button" class="btn btn-outline-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                        </svg></button></a>
-
-                            {{/if}}
+                    {{#if isFavorite}}
+                    <a href="/drinks/{{result._id}}/fav-remove">
+                        <button type="button" class="btn btn-danger mx-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                            </svg></button></a>
+                    {{else}}
+                    <a href="/drinks/{{result._id}}/fav">
+                        <button type="button" class="btn btn-outline-danger mx-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                            </svg></button></a>
                     {{/if}}
-                    <!--END FAV ADD/REMOV BUTTON-->
-                    &nbsp;
-                    <!--EDIT MODAL & BUTTON-->
-                    {{#if isLoggedIn}}
+                    <!--END FAV ADD/REMOVE BUTTON-->
 
-                    <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                    <!--EDIT MODAL & BUTTON-->
+
+                    <button type="button" class="btn btn-success mx-3 float-end" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Add Comment
                     </button>
@@ -123,12 +120,14 @@
                             </div>
                         </div>
                     </div>
-                    {{else}}
-                    <div class="form-text float-end"> Want to Like and Comment?<a href="/signup">Join the party.</a>
-                    </div>
-                    {{/if}}
                     <!--END EDIT MODAL & BUTTON-->
                 </div>
+                {{else}}
+                <div class="form-text float-end"> Want to Like and Comment?<a href="/signup">Join the party.</a>
+                </div>
+                {{/if}}
+
+
                 <a href="/search/?searchTerm={{result.source}}"><span
                         class="badge rounded-pill bg-primary">{{result.source}}</span></a>
                 <a href="/search/?searchTerm={{result.ingredients.0.name}}"><span

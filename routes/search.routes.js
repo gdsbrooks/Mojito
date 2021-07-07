@@ -44,8 +44,9 @@ router.get("/drink/:drinkId", async (req, res, next) => {
     console.log(`result is ---`, result)
     res.render("singledrink.hbs", { result, isFavorite });
   }
-  catch(err){}
+  catch(err){
       next(err);
+  }
 });
 
 module.exports = router;
