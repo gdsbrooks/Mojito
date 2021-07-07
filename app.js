@@ -42,10 +42,15 @@ const MongoStore = require('connect-mongo')
         maxAge: 1000 * 24 * 60 * 60
     },
     store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/Mojito"
+        mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/Mojito",
+        ttl: 24 * 60 * 60
     })
  }))
 
+ app.use( (req, res, next) => {
+     req.app.locals.isLoggedIn = !!req.session.loggedInUser
+     next()
+ })
  ///
 
 // 👇 Start handling routes here
