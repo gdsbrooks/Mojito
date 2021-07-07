@@ -31,8 +31,16 @@
                 </div>
 
             </div>
-            <div class="card-footer">
+            <div class="card-footer flex-row">
+                <div class="float-start">
 
+                <a href="/search/?searchTerm={{result.source}}"><span
+                        class="badge rounded-pill bg-success">{{result.source}}</span></a>
+                <a href="/search/?searchTerm={{result.ingredients.0.name}}"><span
+                        class="badge bg-secondary">{{result.ingredients.0.name}}</span></a>
+                <a href="/search/?searchTerm={{result.ingredients.1.name}}"><span
+                        class="badge bg-secondary">{{result.ingredients.1.name}}</span></a>
+                </div>
 
                 {{#if isLoggedIn }}
 
@@ -40,7 +48,7 @@
                     <!--FAV ADD/REMOV BUTTON-->
                     {{#if isFavorite}}
                     <a href="/drinks/{{result._id}}/fav-remove">
-                        <button type="button" class="btn btn-danger mx-3">
+                        <button type="button" class="btn btn-danger mx-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-heart-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -48,7 +56,7 @@
                             </svg></button></a>
                     {{else}}
                     <a href="/drinks/{{result._id}}/fav">
-                        <button type="button" class="btn btn-outline-danger mx-3">
+                        <button type="button" class="btn btn-outline-danger mx-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-heart-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -59,7 +67,7 @@
 
                     <!--EDIT MODAL & BUTTON-->
 
-                    <button type="button" class="btn btn-success mx-3 float-end" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Add Comment
                     </button>
@@ -120,15 +128,6 @@
                 <div class="form-text float-end"> Want to Like and Comment?<a href="/signup">Join the party.</a>
                 </div>
                 {{/if}}
-
-
-                <a href="/search/?searchTerm={{result.source}}"><span
-                        class="badge rounded-pill bg-success">{{result.source}}</span></a>
-                <a href="/search/?searchTerm={{result.ingredients.0.name}}"><span
-                        class="badge bg-secondary">{{result.ingredients.0.name}}</span></a>
-                <a href="/search/?searchTerm={{result.ingredients.1.name}}"><span
-                        class="badge bg-secondary">{{result.ingredients.1.name}}</span></a>
-
             </div>
         </div>
     </div>
