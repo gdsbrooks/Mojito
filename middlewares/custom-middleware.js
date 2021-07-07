@@ -48,4 +48,14 @@ const randomDrink = async(req, res, next) => {
     next(err)
   }
 }
-  module.exports = {hashIt, isLoggedIn, signInUser, randomDrink}
+
+const refreshSessionUser = async (req, res, next) => {
+  try {
+    req.session.loggedInUser = await UserModel.findById(req.session.loggedInUser._id)
+    next()
+  }
+  catch (err) 
+  { next(err)}
+
+}
+  module.exports = {hashIt, isLoggedIn, signInUser, randomDrink, refreshSessionUser}
