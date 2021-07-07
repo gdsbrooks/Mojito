@@ -1,5 +1,5 @@
 {{!-- <div class="container justify-content-center mt-5"> --}}
-  <div class="card col-md-9 border mx-md-5">
+  <div class="card col-md-9 border mx-md-5 justify-content-center">
     <div class="row g-0 border">
 
     <div> 
@@ -15,15 +15,15 @@
       <div class="col-md 6 border">
 
         <div class="card-body">
-          <h5 class="card-subtitletitle">Ingredients:</h5>
+          <h5 class="card-subtitletitle"><b>Ingredients</b></h5>
           <ul>
             {{#each this.ingredients}}
             <li>{{amount}}{{unit}} {{name}}</li>
             {{/each}}
           </ul>
           <p class="card-text">Method: <br> {{this.method}}</p>
-         {{#if this.garnish}} <p class="card-text">Garnish: <br> {{this.garnish}}</p> {{/if}}
-           {{#if this.note}} <p class="card-text">Note: <br> {{this.note}}</p> {{/if}}
+         {{#if this.garnish}} <p class="card-text"><b>Garnish</b> <br> {{this.garnish}}</p> {{/if}}
+           {{#if this.note}} <p class="card-text"><b>Note</b> <br> {{this.note}}</p> {{/if}}
        
       </div>
     </div>
@@ -47,7 +47,7 @@
       <div class="modal-body">
     
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Comment:</label>
+            <label for="message-text" class="col-form-label"><b>Comment</b></label>
             <textarea class="form-control" id="message-text"></textarea>
           </div>
         </form>
