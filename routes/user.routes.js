@@ -1,14 +1,13 @@
 const router = require("express").Router();
 const UserModel = require("../models/User.model");
 const DrinkModel = require("../models/Drink.model");
-const { hashIt, isLoggedIn } = require("../middlewares/custom-middleware");
+const { hashIt, isLoggedIn, refeshSessionUser } = require("../middlewares/custom-middleware");
 const { db } = require("../models/User.model");
 
 
 //DISPLAY PROFLIE
 
 router.get("/profile", isLoggedIn, (req, res, next) => {
-  console.log(req.session.loggedInUser);
   const userId = req.session.loggedInUser._id
 
   UserModel.findById(req.session.loggedInUser._id)
@@ -49,12 +48,19 @@ router.get('/drinks/:drinkId/fav-remove', (req, res, next) => {
 })
 
 //CREATE NOTE
-// <form action="/post-create" method="POST">
-router.post('/drinks/:drinkId/add-comment', (req, res, next) => {
-  const { comment, rating } = req.body;
-  console.log(req.body)
-  console.log(comment, rating)
-  console.log(typeof Number(rating))
+router.post('/drinks/:drinkId/add-comment', async (req, res, next) => {
+  try {
+    const drinkId = req.params.drinkId
+    const user = req.session.loggedInUser
+    const { comment, rating } = req.body;
+    const newFeedback = {user, comment, rating}
+    const result = await DrinkModel.findByIdAndUpdate(drinkId, { $addToSet: { feedback: newFeedback } }, {new: true} )
+    res.redirect(`back`)
+  }
+  catch(err){
+    next(err)
+  }
+
 })
 
   // 'author' represents the ID of the user document
