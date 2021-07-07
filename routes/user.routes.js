@@ -48,7 +48,39 @@ router.get('/drinks/:drinkId/fav-remove', (req, res, next) => {
   });
 })
 
-// ADD COMMENT
+//CREATE NOTE
+// <form action="/post-create" method="POST">
+router.post('/drinks/:drinkId/add-comment', (req, res, next) => {
+  const { comment, rating } = req.body;
+  console.log(req.body)
+  console.log(comment, rating)
+  console.log(typeof Number(rating))
+})
+
+  // 'author' represents the ID of the user document
+ 
+  // Post.create({ comment, nickname})
+  //   .then(dbPost => {
+  //     // when the new post is created, the user needs to be found and its posts updated with the
+  //     // ID of newly created post
+  //     return User.findByIdAndUpdate(nickname, { $push: { posts: dbPost._id } });
+  //   })
+  //   .then(() => res.redirect('/comments')) // if everything is fine, redirect to list of posts
+  //   .catch(err => {
+  //     console.log(`Err while creating the post in the DB: ${err}`);
+  //     next(err);
+  //   });
+
+//DELETE NOTE
+
+// SHOW NOTE
+// ****************************************************************************************
+// GET route to display all the posts
+
+
+
+
+
 
 
 module.exports = router;
