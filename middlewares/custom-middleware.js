@@ -9,7 +9,7 @@ const hashIt = (password) => {
 }
 
 const isLoggedIn = (req, res, next) => {
-    if ( req.session.loggedInUser) {
+    if (req.session.loggedInUser) {
         next()
     }
     else{

@@ -6,7 +6,7 @@ const { randomDrink, fetchUser } = require("../middlewares/custom-middleware");
 
 ///Search ROUTE ---------------------------------------------
 
-router.get("/search", (req, res, next) => {
+router.get("/search", (req, res, next) => {    
   let searchTerm = req.query.searchTerm;
   if (!searchTerm) { searchTerm = " "}
   DrinkModel.find({
@@ -33,18 +33,19 @@ router.get("/drink/random", randomDrink, (req, res, next) => {
 
 // SINGLE DRINK -----------------------------------------------
 
-router.get("/drink/:drinkId", (req, res, next) => {
-  const drinkId = req.params.drinkId;
-
-  const favDrinks = req.session.loggedInUser.favDrinks;
-  const isFavorite = favDrinks.includes(drinkId);
-  DrinkModel.findById(drinkId)
-    .then((result) => {
-      res.render("singledrink.hbs", { result, isFavorite });
-    })
-    .catch((err) => {
+router.get("/drink/:drinkId", async (req, res, next) => {
+  try {
+    const drinkId = req.params.drinkId;
+    const user = await UserModel.findById(req.session.loggedInUser._id)
+    const isFavorite = user.favDrinks.includes(drinkId);
+    const result = await DrinkModel.findById(drinkId)
+    console.log(`user is --- `, user)
+    console.log(`isFavorite is --- `, isFavorite)
+    console.log(`result is ---`, result)
+    res.render("singledrink.hbs", { result, isFavorite });
+  }
+  catch(err){}
       next(err);
-    });
 });
 
 module.exports = router;

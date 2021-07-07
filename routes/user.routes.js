@@ -17,7 +17,7 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
       res.render('auth/profile.hbs', {result});
     })
     .catch((err) => {
-    res.render('auth/profile', {error: 'You do not have and favorites in your list, add some!'})
+    res.render('auth/profile.hbs', {error: 'You do not have and favorites in your list, add some!'})
     });
 });
 
@@ -26,11 +26,9 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
 router.get('/drinks/:drinkId/fav', (req, res, next) => {
   const {drinkId} = req.params
   const {_id: user} = req.session.loggedInUser
-  console.log(req.params)
   UserModel.findByIdAndUpdate(user, { $addToSet: { favDrinks: drinkId } }, {new: true} )
   .then((result) => {
     res.redirect('/profile')
-    console.log(result)
   }).catch((err) => {
     res.send(err)
   });
@@ -41,10 +39,8 @@ router.get('/drinks/:drinkId/fav', (req, res, next) => {
 router.get('/drinks/:drinkId/fav-remove', (req, res, next) => {
   const {drinkId} = req.params
   const {_id: user} = req.session.loggedInUser
-  console.log(req.params)
   UserModel.findByIdAndUpdate(user, { $pull: { favDrinks: drinkId } }, {new: true} )
   .then((result) => {
-    console.log(result)
     res.redirect('/profile')
     
   }).catch((err) => {
