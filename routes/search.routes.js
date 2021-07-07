@@ -28,7 +28,12 @@ router.get("/search", (req, res, next) => {
 // RANDOM ROUTE ----------------------------------------------
 
 router.get("/drink/random", randomDrink, (req, res, next) => {
-  res.render("singleDrink.hbs", { result: req.session.randomDrink });
+  result = req.session.randomDrink,
+  !result.feedback.length ?
+    avgRating = '4' :
+    avgRating = Math.ceil(result.feedback.reduce((acc, elem) => acc + elem.rating, 0) / result.feedback.length).toString()
+    
+  res.render("singleDrink.hbs", {result, avgRating });
 });
 
 // SINGLE DRINK -----------------------------------------------
