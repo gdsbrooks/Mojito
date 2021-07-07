@@ -33,54 +33,43 @@
             </div>
             <div class="card-footer">
                 <div class="float-end">
-                    <!--FAV ADD/REMOV BUTTON-->
-                    {{#if isLoggedIn }}
-                            {{#if isFavorite}}
-                            <a href="/drinks/{{result._id}}/fav-remove">
+<!--FAV ADD/REMOV BUTTON-->
+                {{#if isFavorite}}
+                <a href="/drinks/{{result._id}}/fav-remove"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+                </a>
 
-                                <button type="button" class="btn btn-danger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                    </svg></button></a>
+                {{else}}
+                <a href="/drinks/{{result._id}}/fav"> <svg xmlns="http://www.w3.org/2000/svg" width="32"
+                        height="32" fill="red" class="bi bi-heart" viewBox="0 0 32 32">
+                        <path
+                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                    </svg> </a>
 
-                            {{else}}
-                            <a href="/drinks/{{result._id}}/fav"> <button type="button" class="btn btn-outline-danger">
+                {{/if}}
+                <!--END FAV ADD/REMOV BUTTON-->
 
-                                    <button type="button" class="btn btn-outline-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                        </svg></button></a>
-
-                            {{/if}}
-                    {{/if}}
-                    <!--END FAV ADD/REMOV BUTTON-->
-                    &nbsp;
-                    <!--EDIT MODAL & BUTTON-->
-                    {{#if isLoggedIn}}
-
-                    <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
-                        Add Comment
-                    </button>
-                    <!--EDIT MODAL-->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">What did you think?</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Comment:</label>
-                                        <textarea class="form-control" id="message-text" name="comment"></textarea>
+                <!--EDIT MODAL & BUTTON-->
+                {{#if isLoggedIn}}
+                <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Add Comment
+                </button>
+                <!--EDIT MODAL-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">What did you think?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="/drinks/{{result._id}}/add-comment">
+                                <div class="mb-3">
+                                    <label for="comment" class="col-form-label">Comment:</label>
+                                    <input type="text" class="form-control" id="comment" name="comment" placeholder="optional"></textarea>
                                     </div>
                                     <div class="mb-3 justify-content-evenly">
                                         <label for="message-text" class="col-form-label me-5">Rating:</label>
@@ -92,25 +81,29 @@
                                                 autocomplete="off">
                                             <label class="btn btn-outline-warning" for="btnradio1">1</label>
 
+                                    <div class="btn-group justify-content-center" role="group" aria-label="Basic radio toggle button group">
+                                        
+                                        <input type="radio" class="btn-check" name="rating" id="btnradio1" value=1 autocomplete="off">
+                                        <label class="btn btn-outline-warning" for="btnradio1">1</label>
 
                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2"
                                                 autocomplete="off">
                                             <label class="btn btn-outline-warning" for="btnradio2">2</label>
 
+                                        <input type="radio" class="btn-check" name="rating" id="btnradio2" value=2 autocomplete="off">
+                                        <label class="btn btn-outline-warning" for="btnradio2">2</label>
 
                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio3"
                                                 autocomplete="off" checked>
                                             <label class="btn btn-outline-warning" for="btnradio3">3</label>
 
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4"
-                                                autocomplete="off">
-                                            <label class="btn btn-outline-warning" for="btnradio4">4</label>
+                                        <input type="radio" class="btn-check" name="rating" id="btnradio3" value=3 autocomplete="off" checked>
+                                        <label class="btn btn-outline-warning" for="btnradio3">3</label>
 
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio5"
-                                                autocomplete="off">
+                                        <input type="radio" class="btn-check" name="rating" id="btnradio4" value=4 autocomplete="off" >
+                                        <label class="btn btn-outline-warning" for="btnradio4">4</label>
 
-                                            <label class="btn btn-outline-warning" for="btnradio5">5</label>
-                                        </div>
+                                        <input type="radio" class="btn-check" name="rating" id="btnradio5" value=5 autocomplete="off">
 
                                     </div>
                                     </form>
@@ -120,6 +113,11 @@
                                         data-bs-dismiss="modal">Close</button>
                                     <button type="button" class="btn btn-success">Save</button>
                                 </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Save</button> </form>
                             </div>
                         </div>
                     </div>
