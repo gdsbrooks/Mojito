@@ -47,7 +47,7 @@
                 <div class="float-end">
                     <!--FAV ADD/REMOV BUTTON-->
                     {{#if isFavorite}}
-                    <a href="/drinks/{{result._id}}/fav-remove">
+                    <a href="/drink/{{result._id}}/fav-remove">
                         <button type="button" class="btn btn-danger mx-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -55,7 +55,7 @@
                                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                             </svg></button></a>
                     {{else}}
-                    <a href="/drinks/{{result._id}}/fav">
+                    <a href="/drink/{{result._id}}/fav">
                         <button type="button" class="btn btn-outline-danger mx-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <form method="POST" , action="/drinks/{{result._id}}/add-comment">
+                                    <form method="POST" , action="/drink/{{result._id}}/add-comment">
                                         <div class="mb-3">
                                             <label for="comment" class="col-form-label">Comment:</label>
                                             <input type="text" class="form-control" id="comment"

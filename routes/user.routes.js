@@ -22,7 +22,7 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
 
 // /ADD FAV DRINK
 
-router.get('/drinks/:drinkId/fav', (req, res, next) => {
+router.get('/drink/:drinkId/fav', (req, res, next) => {
   const {drinkId} = req.params
   const {_id: user} = req.session.loggedInUser
   UserModel.findByIdAndUpdate(user, { $addToSet: { favDrinks: drinkId } }, {new: true} )
@@ -35,7 +35,7 @@ router.get('/drinks/:drinkId/fav', (req, res, next) => {
 
 // DELETE FAV DRINK
 
-router.get('/drinks/:drinkId/fav-remove', (req, res, next) => {
+router.get('/drink/:drinkId/fav-remove', (req, res, next) => {
   const {drinkId} = req.params
   const {_id: user} = req.session.loggedInUser
   UserModel.findByIdAndUpdate(user, { $pull: { favDrinks: drinkId } }, {new: true} )
@@ -49,7 +49,7 @@ router.get('/drinks/:drinkId/fav-remove', (req, res, next) => {
 
 //ADD COMMENT
 
-router.post('/drinks/:drinkId/add-comment', async (req, res, next) => {
+router.post('/drink/:drinkId/add-comment', async (req, res, next) => {
   try {
     const drinkId = req.params.drinkId
     const user = req.session.loggedInUser
@@ -59,6 +59,39 @@ router.post('/drinks/:drinkId/add-comment', async (req, res, next) => {
     const result = await DrinkModel.findByIdAndUpdate(drinkId, { $addToSet: { feedback: newFeedback } }, {new: true} )
     console.log(result)
     res.redirect(`back`)
+  }
+  catch(err){
+    next(err)
+  }
+
+})
+//EDIT COMMENT ------------------------------------------------------
+router.post('/drink/:drinkId/edit-comment', async (req, res, next) => {
+  try {
+    const drinkId = req.params.drinkId
+    const {comment, commentId, commentUser, rating,} = req.body
+    const user = req.session.loggedInUser
+  
+    const newFeedback = {user: commentUser, comment, rating}
+    const result = await DrinkModel.updateOne({_id: drinkId, "feedback._id" : commentId},
+                                                      {$set: {"feedback.$.comment" : comment} },
+                                                      {new: true})
+  
+    res.redirect('back')
+  }
+  catch(err){
+    next(err)
+  }
+
+})
+ //DELETE COMMENT----------------------------------------------------
+ router.post('/drink/:drinkId/delete-comment', async (req, res, next) => {
+  try {
+    const drinkId = req.params.drinkId
+    const {commentId} = req.body
+    const user = req.session.loggedInUser
+    await DrinkModel.findByIdAndUpdate(drinkId, {$pull: {feedback: { _id : commentId } } },{new: true})
+    res.redirect('back')
   }
   catch(err){
     next(err)

@@ -39,8 +39,21 @@ router.get("/test/:drinkId", async (req, res, next) => {
       const drinkId = req.params.drinkId;
       const user = await UserModel.findById(req.session.loggedInUser._id)
       const isFavorite = user.favDrinks.includes(drinkId);
-      const result = await DrinkModel.findById(drinkId).populate('feedback.user', 'nickname')
-      res.render("testgeorge.hbs", { result, isFavorite });
+      let result = await DrinkModel.findById(drinkId).populate('feedback.user', 'nickname')
+  
+      avgRating = !result.feedback.length ? '3' :
+      Math.ceil(result.feedback.reduce((acc, elem) => acc + elem.rating, 0) / result.feedback.length).toString()
+      
+      let updatedFeedback  =  result.feedback.map((elem) => {
+        let cloneElem = JSON.parse(JSON.stringify(elem))
+        if (cloneElem.user._id.toString() == user._id.toString()) {
+          cloneElem.isAuthor = true 
+        } else {
+          cloneElem.isAuthor = false
+        } return cloneElem
+      })
+    //   res.render("singleDrink.hbs", {result, isFavorite, avgRating, updatedFeedback});
+      await res.send( {result, isFavorite, avgRating, updatedFeedback})
     }
     catch(drinkbyIDerror){
         next(drinkbyIDerror);

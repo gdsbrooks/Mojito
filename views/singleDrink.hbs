@@ -46,7 +46,7 @@
                 <div class="float-end">
                     <!--FAV ADD/REMOV BUTTON-->
                     {{#if isFavorite}}
-                    <a href="/drinks/{{result._id}}/fav-remove">
+                    <a href="/drink/{{result._id}}/fav-remove">
                         <button type="button" class="btn btn-danger mx-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -54,7 +54,7 @@
                                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                             </svg></button></a>
                     {{else}}
-                    <a href="/drinks/{{result._id}}/fav">
+                    <a href="/drink/{{result._id}}/fav">
                         <button type="button" class="btn btn-outline-danger mx-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -98,8 +98,13 @@
                     </div>
                     <div class="col-md-1 btn-group btn-group-sm" role="group">
                         {{#if this.isAuthor}}
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                        data-bs-target="#editCommentModal" data-bs-whatever="{{this.comment}}">
+                        <button type="button" 
+                                class="btn btn-warning" 
+                                data-bs-toggle="modal"
+                                data-bs-target="#editCommentModal" 
+                                data-bs-comment="{{this.comment}}" 
+                                data-bs-commentId="{{this._id}}" 
+                                data-bs-commentUser="{{this.user._id}}">
                         Edit
                     </button>
                         {{/if}}
@@ -121,7 +126,7 @@
             </div>
             <div class="modal-body">
 
-                <form method="POST" , action="/drinks/{{result._id}}/add-comment">
+                <form method="POST" , action="/drink/{{result._id}}/add-comment">
                 <div class="mb-3">
                     <label for="comment" class="col-form-label">Comment:</label>
                     <input type="text" class="form-control" id="comment" name="comment"></textarea>
@@ -177,10 +182,13 @@
             </div>
             <div class="modal-body">
 
-                <form method="POST" , action="/drinks/{{result._id}}/add-comment">
+                <form method="POST" , action="/drink/{{result._id}}/edit-comment">
+                
                 <div class="mb-3">
                     <label for="comment" class="col-form-label">Comment:</label>
                     <input type="text" class="form-control" id="comment" name="comment" value="">
+                    <input type="hidden" id="commentUser" name="commentUser" value="">
+                    <input type="hidden" id="commentId"name="commentId" value="">
                 </div>
                 <div class="mb-3 justify-content-evenly">
                     <label for="radio" class="col-form-label me-5">Rating:</label>
@@ -215,8 +223,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save</button></form>
+                    <button formmethod="POST" formaction="/drink/{{result.id}}/delete-comment" type="submit" class="btn btn-danger" >Delete</button>
+                    <button type="submit" class="btn btn-success">Update</button>
+                    </form>
             </div>
         </div>
     </div>
@@ -229,11 +238,19 @@
   // Button that triggered the modal
   let button = event.relatedTarget
   // Extract info from data-bs-* attributes
-  let comment = button.getAttribute('data-bs-whatever')
+  let comment = button.getAttribute('data-bs-comment')
+  let commentId = button.getAttribute('data-bs-commentId')
+  let commentUser = button.getAttribute('data-bs-commentUser')
   // If necessary, you could initiate an AJAX request here
   // and then do the updating in a callback.
   // Update the modal's content.
-  let modalBodyInput = editModal.querySelector('.modal-body input')
-  modalBodyInput.value = comment
+  let modalBodyComment = editModal.querySelector('.modal-body #comment') 
+  let modalBodyCommentId = editModal.querySelector('.modal-body #commentId') 
+  let modalBodyCommentUser = editModal.querySelector('.modal-body #commentUser') 
+  modalBodyComment.value = comment
+  modalBodyCommentId.value = commentId
+  modalBodyCommentUser.value = commentUser
+
+
 })
 </script>
