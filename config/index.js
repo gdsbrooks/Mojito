@@ -35,10 +35,6 @@ module.exports = (app) => {
   const hbs = require("hbs");
   hbs.registerPartials(path.join(__dirname, ".." , "views" , "partial"))
 
-  hbs.registerHelper('rad', function(original, option) {
-    return (original == option) ? 'checked="checked"' : '';
-  });
-
   // Handles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));
 

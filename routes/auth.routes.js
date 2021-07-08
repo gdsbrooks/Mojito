@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const UserModel = require('../models/User.model')
 const DrinkModel = require('../models/Drink.model')
 
-const { hashIt, isLoggedIn } = require('../middlewares/custom-middleware')
+const { hashIt, } = require('../middlewares/custom-middleware')
 
 ///AUTH ROUTES///
 

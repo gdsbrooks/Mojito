@@ -17,25 +17,6 @@ const isLoggedIn = (req, res, next) => {
     }
   }
 
-  const signInUser = async (req, res, next) => {
-
-    const { email, password } = req.body
-    try {
-      const user = await UserModel.findOne({ email })
-      let isPasswordCorrect = await bcrypt.compare(password, user.hashedPassword);
-      if (isPasswordCorrect) {
-        req.session.loggedInUser = user
-        req.app.locals.isLoggedIn = true;
-        res.redirect('/profile')
-      } else { res.render('auth/signin', { error: 'Invalid password' } ) }
-    }
-    catch {
-        //if email is incorrect, return to signin with error message
-        res.render('auth/signin', { error: 'Email does not exists' })
-      }
-      next()
-  }
-
 const randomDrink = async(req, res, next) => {
   try {
     const drinkCount = await DrinkModel.countDocuments()
@@ -49,13 +30,5 @@ const randomDrink = async(req, res, next) => {
   }
 }
 
-const refreshSessionUser = async (req, res, next) => {
-  try {
-    req.session.loggedInUser = await UserModel.findById(req.session.loggedInUser._id)
-    next()
-  }
-  catch (err) 
-  { next(err)}
 
-}
-  module.exports = {hashIt, isLoggedIn, signInUser, randomDrink, refreshSessionUser}
+  module.exports = {hashIt, isLoggedIn, randomDrink}

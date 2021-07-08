@@ -14,3 +14,17 @@ module.exports = router;
 router.get('/aboutus', (req, res, next) => {
   res.render("aboutus.hbs")
 })
+
+//Videos
+router.get('/videoplaylist', (req, res, next) => {
+  res.render('videoplaylist.hbs')
+})
+
+router.get("/testemmy", (req,res,next) => {
+  DrinkModel.find()
+  .then((result) => {
+      res.render('testemmy.hbs', {result})
+  }).catch((err) => {
+      next(err)
+  });
+})
