@@ -1,13 +1,11 @@
-<div class="container justify-content-center">
-
-        <div id="cocktail-card" class="card col-md-10 border-success mx-md-3">
-            <div class="row g-0">
-
-                <div class="card-header">
+       <div class="container  d-flex flex-column justify-content-center align-items-center">
+        <div id="cocktail-card" class="card col-md-8  border-success  m-md-3">
+            
+            <div class="card-header">
                     <h4 class="float-start">{{result.name}} </h4>
                     <div class="float-end"> <img height="32px" src="/images/stars/{{avgRating}}.svg"  alt="Average rating: {{avgRating}} stars" /></div>
-                </div>
-
+            </div>
+            <div class="row g-0">
                 <div class="col-md-3 border">
                     <img src="{{result.imageUrl}}" class="rounded-start" style="width:100%;" alt="{{result.name}}">
                     {{!<div class="card-img-overlay">❤️ <i class="bi-heart-fill"></i></div> --}}
@@ -80,7 +78,7 @@
             </div>
         </div>
     
-        <div id="user-comments" class="card col-md-10 border m-md-3 border-success">
+        <div id="user-comments" class="card col-md-8 border m-md-3 border-success">
             <div class="card-header border-success">
                 <h5 class="text-success">{{#if result.feedback}}User comments{{else}}No comments yet. Add one!{{/if}}</h5>
             </div>
