@@ -56,5 +56,9 @@ router.get("/testemmy", (req,res,next) => {
     });
 })
 
+router.get('/videoplaylist', (req, res, next) => {
+    res.render('videoplaylist.hbs')
+  })
+  
 
 module.exports = router;
