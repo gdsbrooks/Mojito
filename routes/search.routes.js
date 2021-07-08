@@ -4,11 +4,15 @@ const UserModel = require("../models/User.model");
 const DrinkModel = require("../models/Drink.model");
 const { randomDrink, fetchUser } = require("../middlewares/custom-middleware");
 
+
 ///Search ROUTE ---------------------------------------------
 
 router.get("/search", (req, res, next) => {    
   let searchTerm = req.query.searchTerm;
-  if (!searchTerm) { searchTerm = " "}
+  if (searchTerm === "catbutt") {
+    res.redirect('https://gdsbrooks.github.io/cat-butt-disco/')
+  } else if (!searchTerm) { 
+    searchTerm = " "
   DrinkModel.find({
     $or: [
       { source: { $regex: searchTerm, $options: "i" } },
@@ -23,7 +27,7 @@ router.get("/search", (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-});
+}});
 
 // RANDOM ROUTE ----------------------------------------------
 
@@ -64,5 +68,7 @@ router.get("/drink/:drinkId", async (req, res, next) => {
       next(drinkbyIDerror);
   }
 });
+
+
 
 module.exports = router;
