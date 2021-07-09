@@ -12,7 +12,7 @@ router.get("/search", (req, res, next) => {
   if (searchTerm === "catbutt") {
     res.redirect('https://gdsbrooks.github.io/cat-butt-disco/')
   } else if (!searchTerm) { 
-    searchTerm = " "
+    searchTerm = " " }
   DrinkModel.find({
     $or: [
       { source: { $regex: searchTerm, $options: "i" } },
@@ -27,7 +27,7 @@ router.get("/search", (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-}});
+});
 
 // RANDOM ROUTE ----------------------------------------------
 
