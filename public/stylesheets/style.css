@@ -1,3 +1,19 @@
 html{
     background-color: rgb(221, 255, 229);
 }
+
+div#background {
+    background-image: url('/images/coverstraw.jpg');
+    background-position: center;
+    background-size:contain;
+
+}
+
+#mojito-logo {
+
+    margin: 10px auto;
+    width: 80vw;
+    height: auto;
+    padding: 20px;
+    
+}
